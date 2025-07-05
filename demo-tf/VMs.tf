@@ -18,6 +18,7 @@ resource "azurerm_linux_virtual_machine" "App-vm" {
     size = "Standard_B1s"
     admin_username = "azureuser"
     admin_password = "Azureuser@1234"
+    disable_password_authentication = "false"
     network_interface_ids = [azurerm_network_interface.App-nic.id]
     os_disk {
         caching = "ReadWrite"
