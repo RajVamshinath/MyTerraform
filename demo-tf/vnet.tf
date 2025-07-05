@@ -24,13 +24,13 @@ resource "azurerm_subnet" "subnet-web"{
     name = "Mywebsubnet-tf"
     resource_group_name = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
-    address_prefixes = ["10.0.0.1/28"]
+    address_prefixes = ["10.0.0.16/28"]
 }
 
 resource "azurerm_subnet" "subnet-db"{
     name = "Mydbsubnet-tf"
     resource_group_name = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
-    address_prefixes = ["10.0.0.2/28"]
+    address_prefixes = ["10.0.0.32/28"]
 }
 
