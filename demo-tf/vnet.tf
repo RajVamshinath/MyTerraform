@@ -91,17 +91,17 @@ resource "azurerm_network_security_group" "nsg-db" {
 
 # associate subnets with network security groups
 resource "azurerm_subnet_network_security_group_association" "nsg-app-association"{
-    subnet_id = azurerm_subnet.subnet-app.subnet.id
+    subnet_id = azurerm_subnet.subnet-app.id
     network_security_group_id = azurerm_network_security_group.nsg-app.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "nsg-web-association"{
-    subnet_id = azurerm_subnet.subnet-web.subnet.id
+    subnet_id = azurerm_subnet.subnet-web.id
     network_security_group_id = azurerm_network_security_group.nsg-web.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "nsg-db-association"{
-    subnet_id = azurerm_subnet.subnet-db.subnet.id
+    subnet_id = azurerm_subnet.subnet-db.id
     network_security_group_id = azurerm_network_security_group.nsg-db.id
 }
 
