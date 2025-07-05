@@ -12,4 +12,25 @@ resource "azurerm_virtual_network" "vnet"{
     address_space = ["10.0.0.0/24"]
 }
 
+# creation a subnets
+resource "azurerm_subnet" "subnet-app"{
+    name = "Myappsubnet-tf"
+    resource_group_name = azurerm_resource_group.rg.name
+    virtual_network_name = azurerm_virtual_network.vnet.name
+    address_prefixes = ["10.0.1.0/24"]
+}
+
+resource "azurerm_subnet" "subnet-web"{
+    name = "Mywebsubnet-tf"
+    resource_group_name = azurerm_resource_group.rg.name
+    virtual_network_name = azurerm_virtual_network.vnet.name
+    address_prefixes = ["10.0.2.0/24"]
+}
+
+resource "azurerm_subnet" "subnet-db"{
+    name = "Mydbsubnet-tf"
+    resource_group_name = azurerm_resource_group.rg.name
+    virtual_network_name = azurerm_virtual_network.vnet.name
+    address_prefixes = ["10.0.3.0/24"]
+}
 
