@@ -105,6 +105,14 @@ resource "azurerm_subnet_network_security_group_association" "nsg-db-association
     network_security_group_id = azurerm_network_security_group.nsg-db.id
 }
 
+# creation of NAT gateway
+resource azurerm_nat_gateway "nat-db"{
+    name = "natgateway-db-tf"
+    location = azurerm_resource_group.rg.location
+    resource_group_name = azurerm_resource_group.rg.name
+}
+
+
 
 
 
