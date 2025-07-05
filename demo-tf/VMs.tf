@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "App-nic" {
     resource_group_name = azurerm_resource_group.rg.name
     ip_configuration {
         name = "AppIPConfig"
-        subnet_id = "azurerm_subnet.subnet-app.id"
+        subnet_id = azurerm_subnet.subnet-app.id
         private_ip_address_allocation = "Dynamic"
     }
 }
@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "App-nic" {
 resource "azurerm_linux_virtual_machine" "App-vm" {
     name = "App-vm-tf"
     resource_group_name = azurerm_resource_group.rg.name
-    location = "azurerm_resource_group.rg.location"
+    location = azurerm_resource_group.rg.location
     size = "Standard_B1s"
     admin_username = "azureuser"
     admin_password = "Azureuser@1234"
