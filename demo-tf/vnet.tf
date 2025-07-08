@@ -1,7 +1,7 @@
 # create a resource group
 resource "azurerm_resource_group" "rg" {
-    name = "Myrg-tf"
-    location = "East US"
+    name = var.resource_group_name
+    location = var.resource_group_location
 }
 
 # create a virtual network
