@@ -117,3 +117,5 @@ resource "azurerm_subnet_nat_gateway_association" "nat-db-association"{
     subnet_id = azurerm_subnet.subnet-db.id
     nat_gateway_id = azurerm_nat_gateway.nat-db.id
 }
+
+
