@@ -10,13 +10,4 @@ variable "resource_group_location"{
     default = "East US"
 }
 
-# variable for Vnet name and CIDRs
-variable "vnet_name_CIDR"{
-    type = map(string)
-    default = {
-        "vnet_name" = "Myvnet-tf",
-        "vnet_CIDR" = "10.0.0.0/24"
-    }
-}
-
 
