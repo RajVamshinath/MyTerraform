@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "rg" {
 # create a virtual network
 resource "azurerm_virtual_network" "vnet"{
     for_each = var.vnet_name_CIDR
-    name = "${each.key}"
+    name = each.key
     address_space = each.value
     location = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
@@ -15,10 +15,11 @@ resource "azurerm_virtual_network" "vnet"{
 
 # creation a subnets
 resource "azurerm_subnet" "subnet-app"{
+    for_each = var.vnet_name_CIDR
     name = "Myappsubnet-tf"
     resource_group_name = azurerm_resource_group.rg.name
-    virtual_network_name = azurerm_virtual_network.vnet.name
-    address_prefixes = ["10.0.0.0/28"]
+    virtual_network_name = azurerm_virtual_network.vnet[each.key]
+        address_prefixes = ["10.0.0.0/28"]
 }
 
 resource "azurerm_subnet" "subnet-web"{
