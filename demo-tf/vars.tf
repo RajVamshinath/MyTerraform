@@ -15,7 +15,7 @@ variable "virtual_network"{
     type = map(string)
     default = {
         name = "Myvnet-tf"
-        address_prefixes = ["10.0.0.0/24"]
+        address_prefixes = "10.0.0.0/24"
     }
 }
 
