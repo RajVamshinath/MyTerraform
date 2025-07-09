@@ -6,10 +6,11 @@ resource "azurerm_resource_group" "rg" {
 
 # create a virtual network
 resource "azurerm_virtual_network" "vnet"{
-    name = "Myvnet-tf"
+    for_each = var.vnet_name_CIDR
+    name = each.key
+    address_space = each.value
     location = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
-    address_space = ["10.0.0.0/24"]
 }
 
 # creation a subnets
