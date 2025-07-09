@@ -14,7 +14,7 @@ variable "resource_group_location"{
 variable "vnet_name_CIDR"{
     type = map(string)
     default = {
-        "vnet_name" = "Myvnet-tf"
+        "vnet_name" = "Myvnet-tf",
         "vnet_CIDR" = "10.0.0.0/24"
     }
 }
