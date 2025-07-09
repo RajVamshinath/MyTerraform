@@ -17,7 +17,7 @@ resource "azurerm_subnet" "subnet-app"{
     name = "Myappsubnet-tf"
     resource_group_name = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
-        address_prefixes = ["10.0.0.0/28"]
+    address_prefixes = ["10.0.0.0/28"]
 }
 
 resource "azurerm_subnet" "subnet-web"{
@@ -117,5 +117,4 @@ resource "azurerm_subnet_nat_gateway_association" "nat-db-association"{
     subnet_id = azurerm_subnet.subnet-db.id
     nat_gateway_id = azurerm_nat_gateway.nat-db.id
 }
-
 
