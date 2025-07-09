@@ -6,9 +6,8 @@ resource "azurerm_resource_group" "rg" {
 
 # create a virtual network
 resource "azurerm_virtual_network" "vnet"{
-    for_each = var.virtual_network
-    name = each.value["name"]
-    address_space = each.value["address_prefixes"]
+    name = var.virtual_network_name
+    address_space = var.virtual_network_address_prefixes
     location = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
 }

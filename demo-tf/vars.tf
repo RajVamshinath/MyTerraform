@@ -11,11 +11,13 @@ variable "resource_group_location"{
 }
 
 # variable for virtual network
-variable "virtual_network"{
-    type = map(string)
-    default = {
-        name = "Myvnet-tf"
-        address_prefixes = "10.0.0.0/24"
-    }
+variable "virtual_network_name"{
+    type = string
+    default = "Myvnet-tf"
 }
 
+# variable for virtual network address prefixes
+variable "virtual_network_address_prefixes"{       
+    type = list(string)
+    default = ["10.0.0.0/24"]
+}
