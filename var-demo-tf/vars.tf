@@ -22,3 +22,23 @@ variable "virtual_network_address_prefixes"{
     default = ["10.0.0.0/24"]
 }
 
+# varibale for public subnets CIDR
+variable "subnet_public_CIDR"{
+    type = map(string)
+    default = {
+        "Myappsubnet-tf" = "10.0.0.1/28"
+        "Mywebsubnet-tf" = "10.0.0.15/28"
+    }
+}
+
+# variable for private subnet name - db
+variable "subnet_private_db"{
+    type = string
+    default = "Mysubnetdb-tf"
+}
+
+# variable for private subnet CIDR - db
+variable "subnet_private_db_CIDR"{
+    type = list(string)
+    default = "10.0.0.32/24"
+}
