@@ -40,5 +40,5 @@ variable "subnet_private_db"{
 # variable for private subnet CIDR - db
 variable "subnet_private_db_CIDR"{
     type = list(string)
-    default = "10.0.0.32/24"
+    default = ["10.0.0.32/24"]
 }
