@@ -31,7 +31,7 @@ resource "azurerm_linux_virtual_machine" "App-vm" {
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
     size = "Standard_B1s"
-    network_interface_ids = [azurerm_network_interface.public_NIC.id]
+    network_interface_ids = [azurerm_network_interface.public_NIC[each.key].id]
     admin_username = "azureuser"
     admin_password = "Azureuser@1234"
     disable_password_authentication = "false"
