@@ -198,3 +198,41 @@ variable "public_vm"{
         }
     }   
 }
+
+# variable for Private Subnet VMs
+variable "private_vm"{
+    type = map(object({
+        size = string
+        disable_password_authentication = bool
+        os_disk = object({
+            caching = string
+            storage_account_type = string
+        })
+        source_image_reference = object({
+            publisher = string
+            offer = string
+            sku = string
+            version = string
+        })
+        admin_username = string
+        admin_password = string
+    }))
+    default = {
+        "Mydb" = {
+            size = "Standard_B1s"
+            disable_password_authentication = false
+            os_disk = {
+                caching = "ReadWrite"
+                storage_account_type = "Standard_LRS"
+            }
+            source_image_reference = {
+                publisher = "Canonical"
+                offer = "0001-com-ubuntu-server-jammy"
+                sku = "22_04-lts"
+                version = "latest"
+            }
+            admin_username = "azureuser"
+            admin_password = "Azureuser@1234"
+        }
+    }
+}
