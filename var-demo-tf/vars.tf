@@ -119,6 +119,16 @@ variable "public_nic"{
         name = string
         private_ip_address_allocation = string
     }))
+    default = {
+        "Myapp" = {
+            name = "MyappNIC-IPConfig"
+            private_ip_address_allocation = "Dynamic"
+        },
+        "Myweb" = {
+            name = "MywebNIC-IPConfig"
+            private_ip_address_allocation = "Dynamic"
+        }
+    }
 }
 
 # variable for Private NICs - IPConfig
@@ -127,4 +137,65 @@ variable "private_nic"{
         name = string
         private_ip_address_allocation = string
     }))
+    default = {
+        "Mydb" = {
+            name = "MydatabaseNIC-IPConfig"
+            private_ip_address_allocation = "Dynamic"
+        }
+    }
+}
+
+# variable for Public Subnet VMs
+variable "public_vm"{
+    type = map(object({
+        size = string
+        disable_password_authentication = bool
+        os-disk = object({
+            caching = string
+            storage_account_type = string
+        })
+        source_image_reference = object({
+            publisher = string
+            offer = string
+            sku = string
+            version = string
+        })
+        admin_username = string
+        admin_password = string
+        sensitive = true
+    }))
+    default = {
+        "Myapp" = {
+            size = "Standard_B1s"
+            disable_password_authentication = false
+            os_disk = {
+                caching = "ReadWrite"
+                storage_account_type = "Standard_LRS"
+            }
+            source_image_reference = {
+                publisher = "Canonical"
+                offer = "0001-com-ubuntu-server-jammy"
+                sku = "22_04-lts"
+                version = "latest"
+            }
+            admin_username = "azureuser"
+            admin_password = "Azureuser@1234"
+        },
+        "Myweb" = {
+            size = "Standard_B1s"
+            disable_password_authentication = false
+            os_disk = {
+                caching = "ReadWrite"
+                storage_account_type = "Standard_LRS"
+            }
+            source_image_reference = {
+                publisher = "Canonical"
+                offer = "0001-com-ubuntu-server-jammy"
+                sku = "22_04-lts"
+                version = "latest"
+            }
+            admin_username = "azureuser"
+            admin_password = "Azureuser@1234"
+        }
+    }
 }

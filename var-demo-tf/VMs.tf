@@ -25,24 +25,24 @@ resource "azurerm_network_interface" "private_NIC"{
 }
 
 # creation of Virtual machine for in public subnets
-resource "azurerm_linux_virtual_machine" "App-vm" {
+resource "azurerm_linux_virtual_machine" "Public_subnet_vms" {
     for_each = var.subnet_public_CIDR
     name = "${each.key}-vm-tf"
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
-    size = "Standard_B1s"
+    size = var.public_vm[each.key].size
     network_interface_ids = [azurerm_network_interface.public_NIC[each.key].id]
-    admin_username = "azureuser"
-    admin_password = "Azureuser@1234"
-    disable_password_authentication = "false"
+    admin_username = var.public_vm[each.key].admin_username
+    admin_password = var.public_vm[each.key].admin_password
+    disable_password_authentication = var.public_vm[each.key].disable_password_authentication
     os_disk {
-        caching = "ReadWrite"
-        storage_account_type = "Standard_LRS"
+        caching = var.public_vm[each.key].os_disk.caching
+        storage_account_type = var.public_vm[each.key].os_disk.storage_account_type
     }
     source_image_reference {
-        publisher = "Canonical"
-        offer = "0001-com-ubuntu-server-jammy"
-        sku = "22_04-lts"
-        version = "latest"
+        publisher = var.public_vm[each.key].source_image_reference.publisher
+        offer = var.public_vm[each.key].source_image_reference.offer
+        sku = var.public_vm[each.key].source_image_reference.sku
+        version = var.public_vm[each.key].source_image_reference.version
     }
 }
