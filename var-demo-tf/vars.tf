@@ -162,7 +162,6 @@ variable "public_vm"{
         })
         admin_username = string
         admin_password = string
-        sensitive = true
     }))
     default = {
         "Myapp" = {
