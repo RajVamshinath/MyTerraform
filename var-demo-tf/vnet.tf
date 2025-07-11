@@ -30,7 +30,7 @@ resource "azurerm_subnet" "subnet_private_db"{
 }
 
 # creation of network security groups for public subnets
-resource "azureem_netwrok_security_group" "nsg_public"{
+resource "azurerm_network_security_group" "nsg_public" {
     for_each = var.subnet_public_CIDR
     name = "${each.key}-nsg-tf"
     location = azurerm_resource_group.rg.location
