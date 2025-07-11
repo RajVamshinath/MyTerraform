@@ -1,7 +1,7 @@
 # creation of nic for public subnets
 resource "azurerm_network_interface" "public_NIC"{
     for_each = var.subnet_public_CIDR
-    name = var.public_nic_names
+    name = "${each.key}-nic-tf"
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
     ip_configuration {
@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "public_NIC"{
 # creation of nic for private subnets
 resource "azurerm_network_interface" "private_NIC"{
     for_each = var.subnet_private_CIDR
-    name = var.private_nic_names
+    name = "${each.key}-nic-tf"
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
     ip_configuration {
