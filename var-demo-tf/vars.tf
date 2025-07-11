@@ -112,3 +112,31 @@ variable "NAT_publicIP_allocation_method"{
     type = string
     default = "Static"
 }
+
+# variable for public NIC
+variable "public_nic_names"{
+    type = list()
+    default = ["MyAppNIC"]
+}
+
+# variable for Public NICs - IPConfig
+variable "public_nic"{
+    type = map(object({
+        name = string
+        private_ip_address_allocation = string
+    }))
+}
+
+# variable for private NIC
+variable "private_nic_names"{
+    type = list()
+    default = ["MyDbNIC"]
+}
+
+# variable for Private NICs
+variable "private_nic"{
+    type = map(object({
+        name = string
+        private_ip_address_allocation = string
+    }))
+}
