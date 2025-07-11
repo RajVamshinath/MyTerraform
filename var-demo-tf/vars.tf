@@ -27,7 +27,7 @@ variable "subnet_public_CIDR"{
     type = map(string)
     default = {
         "Myappsubnet-tf" = "10.0.0.0/28",
-        "Mywebsubnet-tf" = "10.0.0.15/28"
+        "Mywebsubnet-tf" = "10.0.0.16/28"
     }
 }
 
