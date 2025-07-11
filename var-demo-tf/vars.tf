@@ -168,14 +168,14 @@ variable "public_vm"{
             size = "Standard_B1s"
             disable_password_authentication = false
             os_disk = {
-                caching = "ReadWrite"
-                storage_account_type = "Standard_LRS"
+                caching = "ReadWrite",
+                storage_account_type = "Standard_LRS",
             }
             source_image_reference = {
-                publisher = "Canonical"
-                offer = "0001-com-ubuntu-server-jammy"
-                sku = "22_04-lts"
-                version = "latest"
+                publisher = "Canonical",
+                offer = "0001-com-ubuntu-server-jammy",
+                sku = "22_04-lts",
+                version = "latest",
             }
             admin_username = "azureuser"
             admin_password = "Azureuser@1234"
@@ -184,14 +184,14 @@ variable "public_vm"{
             size = "Standard_B1s"
             disable_password_authentication = false
             os_disk = {
-                caching = "ReadWrite"
+                caching = "ReadWrite",
                 storage_account_type = "Standard_LRS"
             }
             source_image_reference = {
-                publisher = "Canonical"
-                offer = "0001-com-ubuntu-server-jammy"
-                sku = "22_04-lts"
-                version = "latest"
+                publisher = "Canonical",
+                offer = "0001-com-ubuntu-server-jammy",
+                sku = "22_04-lts",
+                version = "latest",
             }
             admin_username = "azureuser"
             admin_password = "Azureuser@1234"
