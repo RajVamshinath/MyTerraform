@@ -150,7 +150,7 @@ variable "public_vm"{
     type = map(object({
         size = string
         disable_password_authentication = bool
-        os-disk = object({
+        os_disk = object({
             caching = string
             storage_account_type = string
         })
@@ -163,4 +163,38 @@ variable "public_vm"{
         admin_username = string
         admin_password = string
     }))
+    default = {
+        "Myapp" = {
+            size = "Standard_B1s"
+            disable_password_authentication = false
+            os_disk = {
+                caching = "ReadWrite"
+                storage_account_type = "Standard_LRS"
+            }
+            source_image_reference = {
+                publisher = "Canonical"
+                offer = "0001-com-ubuntu-server-jammy"
+                sku = "22_04-lts"
+                version = "latest"
+            }
+            admin_username = "azureuser"
+            admin_password = "Azureuser@1234"
+        },
+        "Myweb" = {
+            size = "Standard_B1s"
+            disable_password_authentication = false
+            os_disk = {
+                caching = "ReadWrite"
+                storage_account_type = "Standard_LRS"
+            }
+            source_image_reference = {
+                publisher = "Canonical"
+                offer = "0001-com-ubuntu-server-jammy"
+                sku = "22_04-lts"
+                version = "latest"
+            }
+            admin_username = "azureuser"
+            admin_password = "Azureuser@1234"
+        }
+    }   
 }
