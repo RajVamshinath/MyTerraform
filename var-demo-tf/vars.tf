@@ -121,7 +121,7 @@ variable "public_nic"{
     }))
 }
 
-# variable for Private NICs
+# variable for Private NICs - IPConfig
 variable "private_nic"{
     type = map(object({
         name = string
