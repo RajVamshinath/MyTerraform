@@ -15,16 +15,16 @@ resource "azurerm_virtual_network" "vnet"{
 # creation of public subnets
 resource "azurerm_subnet" "subnet_public"{
     for_each = var.subnet_public_CIDR
-    name = each.key
+    name = "${each.key}-subnet-tf"
     address_prefixes = [each.value]
     resource_group_name = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
 }
 
 # creation of private subnets - db
-resource "azurerm_subnet" "subnet_private_db"{
+resource "azurerm_subnet" "subnet_private"{
     for_each = var.subnet_private_CIDR
-    name = each.key
+    name = "${each.key}-subnet-tf"
     address_prefixes = [each.value]
     resource_group_name = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
@@ -80,7 +80,7 @@ resource "azurerm_subnet_network_security_group_association" "public_subnet_NSG_
 # associate private subnets with their respective NSGs
 resource "azurerm_subnet_network_security_group_association" "private_subnet_NSG_association"{
     for_each =  var.subnet_private_CIDR
-    subnet_id = azurerm_subnet.subnet_private_db[each.key].id
+    subnet_id = azurerm_subnet.subnet_private[each.key].id
     network_security_group_id = azurerm_network_security_group.nsg_private[each.key].id
 }
 
@@ -108,6 +108,6 @@ resource "azurerm_nat_gateway_public_ip_association" "NAT_publicIP_association"{
 # associate NAT with private subnets
 resource "azurerm_subnet_nat_gateway_association" "nat_private_subnet_association"{
     for_each = var.subnet_private_CIDR
-    subnet_id = azurerm_subnet.subnet_private_db[each.key].id
+    subnet_id = azurerm_subnet.subnet_private[each.key].id
     nat_gateway_id = azurerm_nat_gateway.nat-private_subnet.id
 }

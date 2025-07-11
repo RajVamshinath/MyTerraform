@@ -26,8 +26,8 @@ variable "virtual_network_address_prefixes"{
 variable "subnet_public_CIDR"{
     type = map(string)
     default = {
-        "Myappsubnet-tf" = "10.0.0.0/28",
-        "Mywebsubnet-tf" = "10.0.0.16/28"
+        "Myapp" = "10.0.0.0/28",
+        "Myweb" = "10.0.0.16/28"
     }
 }
 
@@ -35,7 +35,7 @@ variable "subnet_public_CIDR"{
 variable "subnet_private_CIDR"{
     type = map(string)
     default = {
-        "Mydbsubnet-tf" = "10.0.0.48/28"
+        "Mydb" = "10.0.0.48/28"
     }
 }
 
@@ -53,7 +53,7 @@ variable "nsg_public_security_rules"{
         destination_address_prefix = string
     }))
     default = {
-        "Myappsubnet-tf" = {
+        "Myapp" = {
             name = "AllowAppTraffic"
             priority = 100
             direction = "Inbound"
@@ -81,7 +81,7 @@ variable "nsg_private_security_rules"{
         destination_address_prefix = string
     }))
     default = {
-        "Mydbsubnet-tf" = {
+        "Mydb" = {
             name = "AllowAppTraffic"
             priority = 100
             direction = "Inbound"
