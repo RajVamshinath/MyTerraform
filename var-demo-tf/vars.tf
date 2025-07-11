@@ -95,3 +95,8 @@ variable "nsg_private_security_rules"{
     }
 }
 
+# variable for NAT gateway
+variable "NAT_gateway_name"{
+    type = string
+    default = "MyNatGateway-tf"
+}
