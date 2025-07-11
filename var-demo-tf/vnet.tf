@@ -91,6 +91,20 @@ resource "azurerm_nat_gateway" "nat-private_subnet"{
     resource_group_name = azurerm_resource_group.rg.name
 }
 
+# creation of public IP for NAT gateway
+resource "azurerm_public_ip" "NAT_public_IP"{
+    name = var.NAT_publicIP
+    resource_group_name = azurerm_resource_group.rg.name
+    location = azurerm_resource_group.rg.location
+    allocation_method = var.NAT_publicIP_allocation_method
+}
+
+# association of NAT gateway with publicIP
+resource "azurerm_nat_gateway_public_ip_association" "NAT_publicIP_association"{
+    nat_gateway_id = azurerm_nat_gateway.nat-private_subnet.id
+    public_ip_address_id = azurerm_public_ip.NAT_public_IP.id
+}
+
 # associate NAT with private subnets
 resource "azurerm_subnet_nat_gateway_association" "nat_private_subnet_association"{
     for_each = var.subnet_private_CIDR

@@ -100,3 +100,15 @@ variable "NAT_gateway_name"{
     type = string
     default = "MyNatGateway-tf"
 }
+
+# variable for NAT gateway public IP
+variable "NAT_publicIP"{
+    type = string
+    default = "MyNatPublicIP-tf"
+}
+
+# variable for NAT gateway public IP allocation method
+variable "NAT_publicIP_allocation_method"{
+    type = string
+    default = "Static"
+}
