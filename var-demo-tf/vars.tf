@@ -116,7 +116,7 @@ variable "NAT_publicIP_allocation_method"{
 # variable for public NIC
 variable "public_nic_names"{
     type = list
-    default = "MyAppNIC"
+    default = ["MyAppNIC", "MywebNIC"]
 }
 
 # variable for Public NICs - IPConfig
@@ -130,7 +130,7 @@ variable "public_nic"{
 # variable for private NIC
 variable "private_nic_names"{
     type = list
-    default = "MyDbNIC"
+    default = ["MyDbNIC"]
 }
 
 # variable for Private NICs
