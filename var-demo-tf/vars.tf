@@ -26,7 +26,7 @@ variable "virtual_network_address_prefixes"{
 variable "subnet_public_CIDR"{
     type = map(string)
     default = {
-        "Myappsubnet-tf" = "10.0.0.1/28",
+        "Myappsubnet-tf" = "10.0.0.0/28",
         "Mywebsubnet-tf" = "10.0.0.15/28"
     }
 }
