@@ -26,6 +26,7 @@ resource "azurerm_network_interface" "private_NIC"{
 
 # create Virtual machine in public subnet for App
 resource "azurerm_linux_virtual_machine" "App-vm" {
+    for_each = var.subnet_public_CIDR
     name = "App-vm-tf"
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
