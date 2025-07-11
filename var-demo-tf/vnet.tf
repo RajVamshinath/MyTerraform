@@ -69,3 +69,17 @@ resource "azurerm_network_security_group" "nsg_private"{
         destination_address_prefix = var.nsg_private_security_rules[each.key].destination_address_prefix
     }
 }
+
+# associate public subnets with their respective NSGs
+resource "azurerm_subnet_network_security_group_association" "public_subnet_NSG_association"{
+    for_each =  var.subnet_public_CIDR
+    subnet_id = azurerm_subnet.subnet_public[each.key].id
+    network_security_group_id = azurerm_network_security_group.nsg_public[each.key].id
+}
+
+# associate private subnets with their respective NSGs
+resource "azurerm_subnet_network_security_group_association" "private_subnet_NSG_association"{
+    for_each =  var.subnet_private_CIDR
+    subnet_id = azurerm_subnet.subnet_private_db[each.key].id
+    network_security_group_id = azurerm_network_security_group.nsg_private[each.key].id
+}
