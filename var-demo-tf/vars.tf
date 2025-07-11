@@ -81,7 +81,7 @@ variable "nsg_private_security_rules"{
         destination_address_prefix = string
     }))
     default = {
-        "Mydbsubnet-tf" = {
+        "Mysubnetdb-tf" = {
             name = "AllowAppTraffic"
             priority = 100
             direction = "Inbound"
