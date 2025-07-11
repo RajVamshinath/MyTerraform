@@ -32,14 +32,11 @@ variable "subnet_public_CIDR"{
 }
 
 # variable for private subnet name - db
-variable "subnet_private_db"{
-    type = string
-    default = "Mysubnetdb-tf"
-}
-
-# variable for private subnet CIDR - db
-variable "subnet_private_db_CIDR"{
-    type = list(string)
+variable "subnet_private_CIDR"{
+    type = map(string)
+    default = {
+        "Mydbsubnet-tf" = "10.0.0.48/28"
+    }
 }
 
 # variable for security rules for public subnet network security groups
@@ -69,3 +66,32 @@ variable "nsg_public_security_rules"{
         }
     }
 }
+
+# variable for security rules for private subnet network security groups
+variable "nsg_private_security_rules"{
+    type = map(object({
+        name = string
+        priority = number
+        direction = string
+        access = string
+        protocol = string
+        source_port_range = string
+        destination_port_range = string
+        source_address_prefix = string
+        destination_address_prefix = string
+    }))
+    default = {
+        "Mydbsubnet-tf" = {
+            name = "AllowAppTraffic"
+            priority = 100
+            direction = "Inbound"
+            access = "Allow"
+            protocol = "Tcp"
+            source_port_range = "*"
+            destination_port_range = "5432"
+            source_address_prefix = "*"
+            destination_address_prefix = "*"
+        }
+    }
+}
+
