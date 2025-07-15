@@ -21,7 +21,7 @@ resource "azurerm_subnet" "subnet"{
 }
 
 # creation of network security groups
-resource "azurerm_network_security_group" "nsg" {
+/* resource "azurerm_network_security_group" "nsg" {
     name = "${var.virtual_network_name}nsg-tf"
     location = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
@@ -43,4 +43,4 @@ resource "azurerm_network_security_group" "nsg" {
 resource "azurerm_subnet_network_security_group_association" "nsg-association"{
     subnet_id = azurerm_subnet.subnet.id
     network_security_group_id = azurerm_network_security_group.nsg.id
-}
+}*/
