@@ -12,15 +12,9 @@ provider "azurerm" {
 }
 
 module "azurerm_virtual_network" {
-    source = "./Modules_VMcompute"
-    resource_group_name = "myResourceGroup"
-    resource_group_location = "East US" 
-    virtual_network_name = "myVnet"
-    virtual_network_address_prefixes = ["10.0.0.0/24"]
+    source = "./Modules"
 }
 
-module "azurerm_subnet" {
-    source = "./Modules_VMcompute/"
-    subnet_address_prefixes = ["10.0.0.0/28"]
-    depends_on = [module.azurerm_virtual_network]  
+module "azurerm_linux_virtual_machine" {
+    source = "./Modules" 
 }
