@@ -21,6 +21,6 @@ module "azurerm_virtual_network" {
 
 module "azurerm_subnet" {
     source = "./Modules_VMcompute/"
-    subnet_address_prefixes = ["10.0.0.0/30"]
+    subnet_address_prefixes = ["10.0.0.0/28"]
     depends_on = [module.azurerm_virtual_network]  
 }
